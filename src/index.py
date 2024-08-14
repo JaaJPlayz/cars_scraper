@@ -9,6 +9,7 @@ BASE_URL = "https://www.google.com/search?sca_upv=1&tbm=isch&sxsrf=ADLYWIKJnFF0l
 def make_request(query):
     return requests.get(BASE_URL + query)
 
+
 def fetch_one_image():
     car_name_array = list()
     final_result = dict()
@@ -35,6 +36,7 @@ def fetch_one_image():
         else:
             print("Error")
 
+
 def fetch_images_with_amount(amount: int):
     car_name_array = list()
     final_result = dict()
@@ -55,7 +57,7 @@ def fetch_images_with_amount(amount: int):
             for image in images:
                 if count >= amount:
                     break
-                
+
                 src = image["src"]
                 if src.endswith("gif"):
                     continue
@@ -76,8 +78,27 @@ def fetch_images_with_amount(amount: int):
 
     return final_result
 
+
+def update_json_image_url_field():
+    with open("src/cars_data.json", "r") as f:
+        old_data = json.load(f)
+
+    new_data = old_data.copy()
+
+    for car in new_data["cards"]:
+        maker = car["maker"].replace(" ", "_")
+        model = car["model"].replace(" ", "_")
+        car["image_url"] = f"images/{maker}-{model}.jpg"
+        car["image_url_2"] = f"images/{maker}-{model}-2.jpg"
+        car["image_url_3"] = f"images/{maker}-{model}-3.jpg"
+
+    with open("src/cars_data.json", "w") as f:
+        json.dump(new_data, f, indent=4)
+
+
 def main():
     fetch_images_with_amount(3)
+    update_json_image_url_field()
 
 
 if __name__ == "__main__":
