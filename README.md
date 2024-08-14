@@ -1,4 +1,4 @@
-# carScraper
+# carScraper 🏎
 
 ## Official repository
 <a href="https://github.com/JaaJPlayz/cars_scraper">cars_scraper</a> on Github
