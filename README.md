@@ -39,6 +39,6 @@ It then uses **BeautifulSoup** to scrape the given URL and retrieve the img src 
 python3 src/index.py
 ```
 ## To-do
-- Try to download more than one image
+- Try to download more than one image ✅
 - Try to download the highest resolution image
 - Add a GUI
